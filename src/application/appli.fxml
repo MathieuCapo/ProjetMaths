@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControllerMenu">
+   <children>
+      <Label fx:id="lbLoi" layoutX="167.0" layoutY="73.0" text="LOI : " />
+      <ComboBox fx:id="choixLoi" layoutX="225.0" layoutY="69.0" onAction="#changerInterface" prefWidth="150.0" />
+      <Label layoutX="212.0" layoutY="14.0" text="SIMULATIONS DES LOIS">
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="premiereEntre" layoutX="226.0" layoutY="124.0" />
+      <Label fx:id="lbEsperance" layoutX="126.0" layoutY="128.0" text="ESPERANCE :" />
+      <TextField fx:id="deuxiemeEntre" layoutX="226.0" layoutY="175.0" />
+      <Label fx:id="lbEcartType" layoutX="126.0" layoutY="179.0" text="ECART TYPE :" />
+      <Label fx:id="lbLamda" layoutX="140.0" layoutY="128.0" text="LAMBDA :" />
+      <Button fx:id="btnSimuler" layoutX="200.0" layoutY="320.0" mnemonicParsing="false" onAction="#simulerLoi" styleClass="btnPrincipale" stylesheets="@application.css" text="SIMULER" />
+      <Label fx:id="lbNbRepetition" layoutX="55.0" layoutY="237.0" text="NOMBRE DE REPETITION :" />
+      <TextField fx:id="nbRepetition" layoutX="226.0" layoutY="233.0" />
+      <Label fx:id="lbValeur" layoutX="143.0" layoutY="128.0" text="VALEUR :" />
+      <Button fx:id="btnAjouter" layoutX="388.0" layoutY="124.0" mnemonicParsing="false" onAction="#ajouterVal" text="Ajouter" />
+      <Label fx:id="probabilite" layoutX="117.0" layoutY="179.0" text="PROBABILITE :" />
+      <Label fx:id="lbNbRepLoi" layoutX="14.0" layoutY="128.0" text="NOMBRE DE REPETITION DE LA LOI :" />
+   </children>
+</AnchorPane>

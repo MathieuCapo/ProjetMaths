@@ -1,0 +1,11 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.btnPrincipale {
+	-fx-background-color:  #FFA500;
+	-fx-pref-width: 200px;
+	-fx-font-size: 20px;
+	-fx-font-style : normal;
+	-fx-font-weight: bold;
+	-fx-text-alignment: center;
+	-fx-background-radius: 50px;
+}
