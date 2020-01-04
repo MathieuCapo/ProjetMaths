@@ -31,57 +31,50 @@ public class ControllerMenu {
 	private AnchorPane ap;
 	
 	@FXML
-	private Label lbEsperance;
+	private Label lbEsperance,probabilite,lbLamda,lbVariance,lbLoi,lbValeur,lbNbRepetition,lbNbRepLoi;
 
 	@FXML
-	private Label probabilite;
+	private TextField premiereEntre,nbRepetition,deuxiemeEntre;
 
 	@FXML
-	private TextField premiereEntre;
-
-	@FXML
-	private TextField nbRepetition;
-
-	@FXML
-	private TextField deuxiemeEntre;
-
-	@FXML
-	private Button btnSimuler;
-
-	@FXML
-	private Label lbEcartType;
-
-	@FXML
-	private Label lbLamda;
-	
-	@FXML
-	private Label lbLoi;
+	private Button btnSimuler,btnAjouter;
 
 	@FXML
 	private ComboBox<String> choixLoi;
-
-	@FXML
-	private Label lbValeur;
-
-	@FXML
-	private Button btnAjouter;
-
-	@FXML
-	private Label lbNbRepetition;
 	
-	@FXML
-    private Label lbNbRepLoi;
-	
+	/**
+	 * Liste des valeurs possibles 
+	 * Necessaire pour les lois Discrete
+	 */
 	ArrayList<Double> listValeurs = new ArrayList<Double>();
 	
+	/**
+	 * Liste des probabilites
+	 */
 	ArrayList<Double> listProbabilite = new ArrayList<Double>();
 	
+	/**
+	 * Tableau contenant les resulats des variables aleatoires simuler
+	 * pour la loi choisie
+	 * Pour certaines lois il est necessaire d'utiliser un compteur
+	 * il est donc necessaire d'utiliser un tableau a 2 dimensions
+	 */
 	ArrayList<Double[][]> resultat2D = new ArrayList<Double[][]>();
 	
+	/**
+	 * Tableau contenant les resulats des variables aleatoires simuler
+	 * pour la loi choisie
+	 */
 	ArrayList<Double[]> resultat = new ArrayList<Double[]>();
 	
+	/**
+	 * Nombre de repetition
+	 */
 	Double repetition;
 	
+	/**
+	 * Nom de la loi
+	 */
 	String loi;
 	
 
@@ -106,7 +99,7 @@ public class ControllerMenu {
 	 void changerInterface(ActionEvent event) {
 		 if(choixLoi.getValue().toString().equals("Normale")){
 			 toutCacher();
-			 lbEcartType.setVisible(true);
+			 lbVariance.setVisible(true);
 			 premiereEntre.setVisible(true);
 			 lbEsperance.setVisible(true);
 			 deuxiemeEntre.setVisible(true);
@@ -140,7 +133,7 @@ public class ControllerMenu {
 	  * Cache tous les elements lies aux lois
 	  */
 	 private void toutCacher() {
-		 lbEcartType.setVisible(false);
+		 lbVariance.setVisible(false);
 		 lbEsperance.setVisible(false);
 		 lbLamda.setVisible(false);
 		 premiereEntre.setVisible(false); 
@@ -159,7 +152,15 @@ public class ControllerMenu {
 		 choixLoi.setItems(options);
 		 toutCacher();
 	 }
-
+	 
+	 /**
+	  * Simule la loi en fonction des entrees de l'utilisateur
+	  * Recupere le nombre de repetition et le nom de la loi
+	  * Puis la fonction selon le nom execute les verifications 
+	  * puis appel la fonction qui simule la loi et ajoute les resultats 
+	  * a la liste des resultats
+	  * @param event
+	  */
 	 @FXML
 	 void simulerLoi(ActionEvent event) {
 		 //TODO ajouter verif, assez de valeurs, nbDerepetition entre ok etc valeurs ok pas de lettres etc
@@ -199,13 +200,22 @@ public class ControllerMenu {
 		 
 	 }
 	 
+	 /**
+	  * Demande a l'utilisateur s'il souhaite realiser une autre simulation
+	  * Si c'est le cas ferme la boite de dialog
+	  * Sinon enrtegistre la liste des resultats
+	  */
 	 public void autreSimulation() {
+		 //Fait disparaitre les elements lies au choix de la loi
+		 choixLoi.setVisible(false);
+		 lbLoi.setVisible(false);
 		 Alert alert = new Alert(AlertType.CONFIRMATION);
 		 alert.setTitle("CONFIRMATION : Arret simulation");
 		 alert.setHeaderText("ARRETER SIMULATION");
 		 alert.setContentText("Arreter de simuler et enregistrer ?");
 
 		 Optional<ButtonType> result = alert.showAndWait();
+		 /* Si l'utilisateur veut enregister */
 		 if (result.get() == ButtonType.OK){
 			 switch(loi) {
 				 case "Exponentielle":

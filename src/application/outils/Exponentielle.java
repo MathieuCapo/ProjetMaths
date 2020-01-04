@@ -78,7 +78,7 @@ public class Exponentielle {
 	
 	
 	/**
-	 * Effectue 10 000 simulations al�atoires
+	 * Effectue nbTirages simulations al�atoires
 	 */
 	public Double[] simuler(Double repetition) {
 		nbTirages = (int)Math.round(repetition);
