@@ -86,11 +86,12 @@ public class Binomiale {
 		return contientNbApparition;
 	}
 	
+	
+	
 	/**
-	 * A lancer depuis l'interface
-	 * @param args
+	 * Lance la simulation de la loi Binomiale
 	 */
-	public void main(String args[] ) {
+	public void simuler() {
 		/* Lancer le constructeur quand on ouvre la page interface */
 		/* ACTION LORSQU'ON CLIQUE SUR SIMULER */
 		for ( int y = 0; y < NB_EXPERIENCE; y++) {
