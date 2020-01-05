@@ -187,7 +187,6 @@ public class ControllerMenu {
 				 break;
 				 
 			 case "Binomiale":
-				 System.out.println("TESTTTTTTTTTT");
 				 resultat.add(OutilsInterface.simulerBinomiale(Double.parseDouble(premiereEntre.getText()),
 						 Double.parseDouble(deuxiemeEntre.getText()),repetition));
 				 break;

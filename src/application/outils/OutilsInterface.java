@@ -64,8 +64,8 @@ public class OutilsInterface {
 	 * @return les resultats des tirages de la simulation de la loi
 	 */
 	public static Double[] simulerBinomiale(double nbRep, double proba, Double repetition) {
-		//TODO
-		return null;
+		Binomiale loi = new Binomiale(proba, nbRep, repetition);
+		return loi.simuler(repetition);
 	}
 
 	/**

@@ -12,6 +12,7 @@ public class TraitementFichier {
 	private static String EXTENSION = ".csv";
 	
 	public static void save(ArrayList<Double[]> resultats, String nomLoi) {
+		
 		for(int i = 0; i < resultats.size(); i++) {
 			enregistrerFichier(NOM_FICHIER + nomLoi + i+".csv", resultats.get(i));
 		}
