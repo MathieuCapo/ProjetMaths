@@ -80,4 +80,29 @@ public class OutilsInterface {
 		Uniforme loi = new Uniforme(tab);
 		return loi.simuler(repetition);
 	}
+	
+	
+	/**
+	 * Vérifie si la String peut être parse en nombre afin de 
+	 * pouvoir l'envoyer aux méthodes gérant les différentes lois
+	 * @param aVerif
+	 * @return un booleen vrai si aVerif a le bon format, faux sinon
+	 */
+	public static boolean canBeNumber(String aVerif) {
+		try {
+			Double.parseDouble(aVerif);
+			return true;
+		}catch(NumberFormatException e) {
+			return false;
+		}
+	}
+	
+	/**
+	 * permet de vérifier que la valeur se situe bien 
+	 * entre les valeurs passées en argument (comprises)
+	 * @return un boolean = true si valeur correct false sinon
+	 */
+	public static boolean verifValeur(Double debut, Double fin, Double valeur) {
+		return valeur >= debut && valeur <= fin;
+	}
 }
