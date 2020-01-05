@@ -165,18 +165,29 @@ public class ControllerMenu {
 	 void simulerLoi(ActionEvent event) {
 		 //TODO ajouter verif, assez de valeurs, nbDerepetition entre ok etc valeurs ok pas de lettres etc
 		 loi = choixLoi.getValue().toString();
-		 repetition = Double.parseDouble(nbRepetition.getText());
+		 // si le nombre de répétition n'est pas valide on affiche le message d'erreur du default
+		 //try {
+			 repetition = Double.parseDouble(nbRepetition.getText());
+		 //} catch(NumberFormatException e) {
+			 // TODO c'est pas un nombre donc sois afficher un message d'erreur soit jsp
+		// }
+		 // si le champ ne peut pas être un nombre 
+		 //if (!OutilsInterface.canBeNumber(premiereEntre.getText())) {
+			 // on affiche le default du switch 
+			// loi = "invalide";
+		// }
 		 switch(loi) {
 			 case "Exponentielle":
 				 resultat.add(OutilsInterface.simulerExponentielle(Double.parseDouble(premiereEntre.getText()),repetition));
 				 break;
 				 
-			 case "Normale":
+			 case "Normale": 
 				 resultat.add(OutilsInterface.simulerNormale(Double.parseDouble(premiereEntre.getText()),
 						 Double.parseDouble(deuxiemeEntre.getText()),repetition));
 				 break;
 				 
 			 case "Binomiale":
+				 System.out.println("TESTTTTTTTTTT");
 				 resultat.add(OutilsInterface.simulerBinomiale(Double.parseDouble(premiereEntre.getText()),
 						 Double.parseDouble(deuxiemeEntre.getText()),repetition));
 				 break;
@@ -189,7 +200,7 @@ public class ControllerMenu {
 				 resultat2D.add(OutilsInterface.simulerUniforme(listValeurs,repetition));
 				 break;
 				 
-			 default:
+			 default: 
 				 Alert alert = new Alert(AlertType.INFORMATION);
 				 alert.setTitle("ERREUR: Choix loi");
 				 alert.setHeaderText("Choix loi incorrect");

@@ -2,6 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="S:/2 - Logiciels/javafx-sdk-11.0.2/lib/javafx.base.jar">
+
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
@@ -12,25 +13,30 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="S:/2 - Logiciels/javafx-sdk-11.0.2/lib/javafx.fxml.jar">
+
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+
 	<classpathentry kind="lib" path="S:/2 - Logiciels/javafx-sdk-11.0.2/lib/javafx.graphics.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+
 	<classpathentry kind="lib" path="S:/2 - Logiciels/javafx-sdk-11.0.2/lib/javafx.media.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+
 	<classpathentry kind="lib" path="S:/2 - Logiciels/javafx-sdk-11.0.2/lib/javafx.swing.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+
 	<classpathentry kind="lib" path="S:/2 - Logiciels/javafx-sdk-11.0.2/lib/javafx.web.jar">
 		<attributes>
 			<attribute name="module" value="true"/>
