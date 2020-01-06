@@ -55,6 +55,7 @@ public class Uniforme {
 	
 	public Uniforme(Double tab[]) {
 		this.tab = tab;
+		setTAILLE(tab.length);
 	}
 	
 	/**

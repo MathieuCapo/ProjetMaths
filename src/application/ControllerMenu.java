@@ -259,6 +259,7 @@ public class ControllerMenu {
 		 choixLoi.setVisible(false);
 		 lbLoi.setVisible(false);
 		 //TODO afficher btn retour accueil
+		 System.out.println(" AJOUT " + premiereEntre.getText());
 		 if(choixLoi.getValue().toString().equals("Discrete")) {
 			 //TODO ajouter verif
 			 listValeurs.add(Double.parseDouble(premiereEntre.getText()));

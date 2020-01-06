@@ -20,11 +20,11 @@
       <Label fx:id="lbVariance" layoutX="126.0" layoutY="179.0" text="VARIANCE :" />
       <Label fx:id="lbLamda" layoutX="140.0" layoutY="128.0" text="LAMBDA :" />
       <Button fx:id="btnSimuler" layoutX="200.0" layoutY="320.0" mnemonicParsing="false" onAction="#simulerLoi" styleClass="btnPrincipale" stylesheets="@application.css" text="SIMULER" />
-      <Label fx:id="lbNbRepetition" layoutX="55.0" layoutY="237.0" text="NOMBRE DE REPETITION :" />
+      <Label fx:id="lbNbRepetition" layoutX="31.0" layoutY="237.0" text="NOMBRE DE REPETITION DE LA LOI:" />
       <TextField fx:id="nbRepetition" layoutX="226.0" layoutY="233.0" />
       <Label fx:id="lbValeur" layoutX="143.0" layoutY="128.0" text="VALEUR :" />
       <Button fx:id="btnAjouter" layoutX="388.0" layoutY="124.0" mnemonicParsing="false" onAction="#ajouterVal" text="Ajouter" />
       <Label fx:id="probabilite" layoutX="117.0" layoutY="179.0" text="PROBABILITE :" />
-      <Label fx:id="lbNbRepLoi" layoutX="14.0" layoutY="128.0" text="NOMBRE DE REPETITION DE LA LOI :" />
+      <Label fx:id="lbNbRepLoi" layoutX="57.0" layoutY="128.0" text="NOMBRE DE REPETITION :" />
    </children>
 </AnchorPane>
