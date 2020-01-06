@@ -109,7 +109,7 @@ public class OutilsInterface {
 	 * permet de vérifier que la valeur est strictement supérieur à la limite
 	 * @return un boolean = true si valeur correct false sinon
 	 */
-	public static boolean verifValeurSup(Double limite, Double valeur) {
-		return valeur > limite;
+	public static boolean verifValeurPos(Double valeur) {
+		return valeur > 0;
 	}
 }
