@@ -54,6 +54,7 @@ public class Graphique {
 		
 		//Definition des axes
 		xAxis.setLabel("Nombre de point");
+		yAxis.setLabel("Valeur");
 		lineChart.setTitle("Graphe simulation");
 		//defining a series
 		XYChart.Series series = new XYChart.Series();
@@ -66,6 +67,7 @@ public class Graphique {
 		String reggexUniforme = "resultatUniforme[0-9]+.csv";
 		String reggexDiscrete = "resultatDiscrete[0-9]+.csv";
 		String reggexExponentielle = "resultatExponentielle[0-9]+.csv";
+		String reggexBinomiale = "resultatBinomiale[0-9]+.csv";
 		int x;
 		/* Lecture du fichier de l'utilisateur */
 		try(BufferedReader lect= new BufferedReader(new FileReader(nomFich))) {
@@ -93,17 +95,22 @@ public class Graphique {
 					series.getData().add(new XYChart.Data(valeurs.get(i), resultats.get(i)));
 				}
 				lineChart.setCreateSymbols(true);
-			/*}else if(nomFich.matches(reggexExponentielle)) {
-				while((ligne = lect.readLine()) != null) {
+				//Si est une loi Exponentielle
+			}else if(nomFich.matches(reggexExponentielle)) {
+				while((ligne = lect.readLine()) != null) {//lit le fichier
 					resultats.add(Double.parseDouble(ligne.substring(0,ligne.length()-1)));
 					compteur++;
 				}
 				int compteurFin = resultats.size()-1;
-				for(int i = 0; i < resultats.size(); i++) {
+				for(int i = 0; i < resultats.size(); i++) { //ajoute en partant de la fin les valeurs
 					series.getData().add(new XYChart.Data(i, resultats.get(compteurFin)));
 					compteurFin--;
-				}*/
+				}
 			} else { //pour toutes les autres lois recupere uniquement une colonne
+				if(nomFich.matches(reggexBinomiale)) {
+					xAxis.setLabel("Numero tirage");
+					yAxis.setLabel("Nombre de succes");
+				}
 				while((ligne = lect.readLine()) != null) { // lit le fichier et ajoute les resultats
 					resultats.add(Double.parseDouble(ligne.substring(0,ligne.length()-1)));
 					compteur++;
