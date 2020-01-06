@@ -175,7 +175,7 @@ public class ControllerMenu {
 			loi = "invalide";
 		}
 		// si le champ ne peut pas être un nombre 
-		if (!OutilsInterface.canBeNumber(premiereEntre.getText())) {
+		if (!OutilsInterface.canBeNumber(premiereEntre.getText()) && loi != "Discrete") {
 			// on affiche le default du switch 
 			loi = "invalide";
 		}
