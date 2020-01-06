@@ -6,6 +6,7 @@ import java.util.Optional;
 import application.outils.Binomiale;
 import application.outils.Discrete;
 import application.outils.Exponentielle;
+import application.outils.Graphique;
 import application.outils.Normale;
 import application.outils.OutilsInterface;
 import application.outils.TraitementFichier;
@@ -248,7 +249,8 @@ public class ControllerMenu {
 					 TraitementFichier.saveTab2D(resultat2D, "Uniforme");
 					 break;
 			 }
-			 Platform.exit();
+			 Main.setScene(Graphique.graphe());
+			 //Platform.exit();
 		 }
 	 }
 	 

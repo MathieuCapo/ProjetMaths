@@ -1,3 +1,4 @@
+
 package application.outils;
 
 import java.io.BufferedReader;
@@ -7,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
 
-import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
@@ -16,35 +16,35 @@ import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
 
 
-public class Graphe extends Application {
-	
+public class Graphique {
+
 	/**
 	 * Nom du fichier
 	 */
-	private String nomFich;
-	
+	private static String nomFich;
+
 	/**
 	 * Affiche une boite de dialogue qui demande a l'utilisateur d'entrer un nom de fichier
 	 */
-	private void showInputTextDialog() {
-		 
-        TextInputDialog dialog = new TextInputDialog("resultat.csv");
- 
-        dialog.setTitle("NOM FICHIER");
-        dialog.setHeaderText("Entrer le nom du fichier :");
-        dialog.setContentText("Nom:");
- 
-        Optional<String> result = dialog.showAndWait();
- 
-        result.ifPresent(name -> {
-            nomFich = name;
-        });
-    }
+	private static void showInputTextDialog() {
+
+		TextInputDialog dialog = new TextInputDialog("resultat.csv");
+
+		dialog.setTitle("NOM FICHIER");
+		dialog.setHeaderText("Entrer le nom du fichier :");
+		dialog.setContentText("Nom:");
+
+		Optional<String> result = dialog.showAndWait();
+
+		result.ifPresent(name -> {
+			nomFich = name;
+		});
+	}
 
 	/**
 	 * Au lancement de la''plication charge le graphique
 	 */
-	public void start(Stage stage) {
+	public static Scene graphe() {
 		/*Initialisation du graphique */
 		final NumberAxis xAxis = new NumberAxis();
 		final NumberAxis yAxis = new NumberAxis();
@@ -53,16 +53,11 @@ public class Graphe extends Application {
 		lineChart.setCreateSymbols(false);
 		/*Initialisation de la page */
 		Scene scene  = new Scene(lineChart,800,600);
-		stage.setScene(scene);
-		stage.show();
-		
 		showInputTextDialog();
-		
-		stage.setTitle("Courbe simulation");
-		//defining the axes
-		
-		xAxis.setLabel("Nombre de point");
 
+		
+		//Definition des axes
+		xAxis.setLabel("Nombre de point");
 		lineChart.setTitle("Graphe simulation");
 		//defining a series
 		XYChart.Series series = new XYChart.Series();
@@ -71,16 +66,20 @@ public class Graphe extends Application {
 		ArrayList<Double> resultats = new ArrayList<Double>();
 		ArrayList<Double> valeurs = new ArrayList<Double>();
 		int compteur = 0;
+		/* Reggex permettant de savoir quel loi le graphe doit afficher*/
 		String reggexUniforme = "resultatUniforme[0-9]+.csv";
 		String reggexDiscrete = "resultatDiscrete[0-9]+.csv";
 		String reggexExponentielle = "resultatExponentielle[0-9]+.csv";
 		int x;
-		
+		/* Lecture du fichier de l'utilisateur */
 		try(BufferedReader lect= new BufferedReader(new FileReader(nomFich))) {
-			if(nomFich.matches(reggexUniforme)) {
-				lineChart.setCreateSymbols(true);
+			/* Si loi uniforme ou discrete */
+			if(nomFich.matches(reggexUniforme) || nomFich.matches(reggexDiscrete)) {
+				xAxis.setLabel("Valeur");
+				yAxis.setLabel("Nombre d'apparition");
 				while((ligne = lect.readLine()) != null) {
-					 x = 1;
+					x = 1;
+					/* Decoupe et recupere les deux valeurs ( valeurs et le nombre d'apparition */
 					for (String val: ligne.split(";")) {
 						if(x == 1) {
 							System.out.println(val);
@@ -93,32 +92,11 @@ public class Graphe extends Application {
 					}
 					compteur++;
 				}
+				/* Ajoute les valeurs au graphe */
 				for(int i = 0; i < resultats.size(); i++) {
 					series.getData().add(new XYChart.Data(valeurs.get(i), resultats.get(i)));
 				}
 				lineChart.setCreateSymbols(true);
-				
-			} else if(nomFich.matches(reggexDiscrete)) {
-				while((ligne = lect.readLine()) != null) {
-					 x = 1;
-					for (String val: ligne.split(";")) {
-						if(x == 1) {
-							System.out.println(val);
-							valeurs.add(Double.parseDouble(val));
-						} else if(x == 2){
-							System.out.println(val);
-							resultats.add(Double.parseDouble(val));
-						}
-						x++;
-					}
-					compteur++;
-				}
-				for(int i = 0; i < resultats.size(); i++) {
-					series.getData().add(new XYChart.Data(valeurs.get(i), resultats.get(i)));
-				}
-				lineChart.setCreateSymbols(true);
-				
-				
 			}else if(nomFich.matches(reggexExponentielle)) {
 				while((ligne = lect.readLine()) != null) {
 					resultats.add(Double.parseDouble(ligne.substring(0,ligne.length()-1)));
@@ -139,13 +117,11 @@ public class Graphe extends Application {
 				}
 			}
 			lineChart.getData().add(series);
+			return scene;
 		} catch(IOException e) {
 			System.err.println("Erreur");
 		}
+		return scene;
 	}
 
-	public static void main(String[] args) {
-		launch(args);
-	}
 }
-
