@@ -112,4 +112,31 @@ public class OutilsInterface {
 	public static boolean verifValeurPos(Double valeur) {
 		return valeur > 0;
 	}
+	/**
+	 * Verifie si l'ajout de la valeur au tableau 
+	 * donne après l'addition des valeurs un nombre > 1
+	 * @param vals
+	 * @return
+	 */
+	public static boolean allerAUn(ArrayList<Double> vals, double valeur) {
+		double valManquante = 0;
+		for (int i = 0; i < vals.size(); i++) {
+			valManquante += vals.get(i);
+		}
+		valManquante+=valeur;
+		return valManquante<=1;
+	}
+
+	/**
+	 * Verifie si l'addition des valeurs de l'ArrayList est egale à 1
+	 * @param vals
+	 * @return vrai si == 1, faux sinon
+	 */
+	public static boolean verifEgal1(ArrayList<Double> vals) {
+		double verif = 0;
+		for (int i = 0; i < vals.size();i++) {
+			verif += vals.get(i);
+		}
+		return verif == 1;
+	}
 }
