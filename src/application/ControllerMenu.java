@@ -98,6 +98,8 @@ public class ControllerMenu {
 	  * @param event
 	  */
 	 void changerInterface(ActionEvent event) {
+		 listValeurs.clear();
+		 listProbabilite.clear();
 		 if(choixLoi.getValue().toString().equals("Normale")){
 			 toutCacher();
 			 lbVariance.setVisible(true);
@@ -299,10 +301,10 @@ public class ControllerMenu {
 	 void ajouterVal(ActionEvent event) {
 		 choixLoi.setVisible(false);
 		 lbLoi.setVisible(false);
-		 double value1 = Double.parseDouble(premiereEntre.getText());
-		 double value2 = Double.parseDouble(deuxiemeEntre.getText());
+		 double value1 = Double.parseDouble(premiereEntre.getText());	 
 		 if (choixLoi.getValue().toString().equals("Discrete")) {
 			 // vérif 2ème entrée ne dépasse pas 1
+			 double value2 = Double.parseDouble(deuxiemeEntre.getText());
 			 if (OutilsInterface.inferieurAUn(listProbabilite, value2)) {
 				 listValeurs.add(value1);
 				 listProbabilite.add(value2);

@@ -91,7 +91,7 @@ public class OutilsInterface {
 	public static boolean canBeNumber(String aVerif) {
 		try {
 			Double.parseDouble(aVerif);
-			return true;
+			return aVerif != "";
 		}catch(NumberFormatException e) {
 			return false;
 		}
