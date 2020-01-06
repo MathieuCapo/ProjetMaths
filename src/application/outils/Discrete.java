@@ -1,5 +1,5 @@
 /* 
- * Simulation d'une loi uniforme discrï¿½te
+ * Simulation d'une loi uniforme discréte
  * IUT INFO 2                                Uniforme.java
  */
 
@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 /**
- * Classe qui simule une loi discrï¿½te sur un ensemble E
+ * Classe qui simule une loi discrete sur un ensemble E
  * fini, E est un sous-ensemble de R
- * L'utilisateur rentre les paramï¿½tres qu'il souhaite et le
- * programme renvoie des valeurs alï¿½atoire en fonction de ces paramï¿½tres
+ * L'utilisateur rentre les paramétres qu'il souhaite et le
+ * programme renvoie des valeurs aléatoire en fonction de ces paramétres
  * @author landry.assemat
  *
  */
@@ -30,7 +30,7 @@ public class Discrete {
 
 	
 
-	/* tableau qui compte le nombre de fois que l'on tire les diffï¿½rentes
+	/* tableau qui compte le nombre de fois que l'on tire les différentes
 	 * variables dans le tableau tab
 	 */
 	private static Double[][] compteur;
@@ -57,7 +57,7 @@ public class Discrete {
 	}
 	
 	/**
-	 * Constructeur avec arguments de la loi discrï¿½te
+	 * Constructeur avec arguments de la loi discréte
 	 * @param esperance
 	 * @param variance
 	 */
@@ -66,14 +66,10 @@ public class Discrete {
 		//this.variance = variance;
 	}
 
-
-
-
-
 	/**
-	 * Simule la loi discrï¿½te alï¿½atoire sur des
+	 * Simule la loi discréte aléatoire sur des
 	 * grandes valeurs pour savoir si on obitent
-	 * la mï¿½me esperance
+	 * la même esperance
 	 * param nombre de simulations
 	 * return esperance aleatoire
 	 */
@@ -83,7 +79,7 @@ public class Discrete {
                 System.out.println(tab.get(i));
                 compteur[i][0] = tab.get(i);
             }
-            /* la valeur tirï¿½ au sort dans le tableau */
+            /* la valeur tirée au sort dans le tableau */
             Double hasard;
             for (int y = 0; y < nombre; y++) {
                 hasard = Math.random();
