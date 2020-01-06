@@ -18,7 +18,6 @@ public class Main extends Application {
 	/**
 	 * Permet de lancer l'application
 	 */
-	@Override
 	public void start(Stage primaryStage) {
 		try {
 			page = primaryStage;

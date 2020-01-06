@@ -211,7 +211,13 @@ public class ControllerMenu {
 				 break;
 				 
 			 case "Discrete":
-				 resultat2D.add(OutilsInterface.simulerDiscrete(listValeurs,listProbabilite,repetition));	 
+				 if (OutilsInterface.verifEgal1(listProbabilite)) {
+					 resultat2D.add(OutilsInterface.simulerDiscrete(listValeurs,listProbabilite,repetition));	 
+				 } else {
+					 System.out.println("L'ensemble des proba n'atteint pas 1, il manque " + "");
+					 double manque = OutilsInterface.allerAUn(listProbabilite);
+					 deuxiemeEntre.setText(manque + "");
+				 }
 				 break;
 				 
 			 case "Uniforme":
@@ -297,16 +303,16 @@ public class ControllerMenu {
 		 double value2 = Double.parseDouble(deuxiemeEntre.getText());
 		 if (choixLoi.getValue().toString().equals("Discrete")) {
 			 // vérif 2ème entrée ne dépasse pas 1
-			 if (OutilsInterface.allerAUn(listProbabilite, value2)) {
+			 if (OutilsInterface.inferieurAUn(listProbabilite, value2)) {
 				 listValeurs.add(value1);
 				 listProbabilite.add(value2);
 				 System.out.println(" AJOUT " + value1);
+				 premiereEntre.clear();
+				 deuxiemeEntre.clear();
 			 } else {
-				 System.out.println("nope");
+				 System.out.println("probabilités supérieures à 1 -> erreur");
 				 //TODO afficher message erreur car ensemble val > 1
 			 }
-			 premiereEntre.clear();
-			 deuxiemeEntre.clear();
 		 } else {
 			 listValeurs.add(Double.parseDouble(premiereEntre.getText()));
 		 }

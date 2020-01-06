@@ -118,7 +118,7 @@ public class OutilsInterface {
 	 * @param vals
 	 * @return
 	 */
-	public static boolean allerAUn(ArrayList<Double> vals, double valeur) {
+	public static boolean inferieurAUn(ArrayList<Double> vals, double valeur) {
 		double valManquante = 0;
 		for (int i = 0; i < vals.size(); i++) {
 			valManquante += vals.get(i);
@@ -138,5 +138,13 @@ public class OutilsInterface {
 			verif += vals.get(i);
 		}
 		return verif == 1;
+	}
+	
+	public static double allerAUn(ArrayList<Double> vals) {
+		double manque = 0;
+		for (int i = 0; i < vals.size(); i++) {
+			manque += vals.get(i);
+		}
+		return -manque+1;
 	}
 }
