@@ -6,7 +6,7 @@ import java.util.Optional;
 import application.outils.Binomiale;
 import application.outils.Discrete;
 import application.outils.Exponentielle;
-import application.outils.Graphique;
+//import application.outils.Graphique;
 import application.outils.Normale;
 import application.outils.OutilsInterface;
 import application.outils.TraitementFichier;
@@ -98,6 +98,8 @@ public class ControllerMenu {
 	  * @param event
 	  */
 	 void changerInterface(ActionEvent event) {
+		 listValeurs.clear();
+		 listProbabilite.clear();
 		 if(choixLoi.getValue().toString().equals("Normale")){
 			 toutCacher();
 			 lbVariance.setVisible(true);
@@ -211,7 +213,13 @@ public class ControllerMenu {
 				 break;
 				 
 			 case "Discrete":
-				 resultat2D.add(OutilsInterface.simulerDiscrete(listValeurs,listProbabilite,repetition));	 
+				 if (OutilsInterface.verifEgal1(listProbabilite)) {
+					 resultat2D.add(OutilsInterface.simulerDiscrete(listValeurs,listProbabilite,repetition));	 
+				 } else {
+					 System.out.println("L'ensemble des proba n'atteint pas 1, il manque " + "");
+					 double manque = OutilsInterface.allerAUn(listProbabilite);
+					 deuxiemeEntre.setText(manque + "");
+				 }
 				 break;
 				 
 			 case "Uniforme":
@@ -271,8 +279,9 @@ public class ControllerMenu {
 					 TraitementFichier.saveTab2D(resultat2D, "Uniforme");
 					 break;
 			 }
-			 Main.setScene(Graphique.graphe());
-			 //Platform.exit();
+			 // TODO remettre ça
+			 //Main.setScene(Graphique.graphe());
+			 Platform.exit();
 		 } else {
 			 choixLoi.setVisible(true);
 			 lbLoi.setVisible(true);
@@ -292,12 +301,20 @@ public class ControllerMenu {
 	 void ajouterVal(ActionEvent event) {
 		 choixLoi.setVisible(false);
 		 lbLoi.setVisible(false);
-		 // TODO vérif premiere entree
-		 System.out.println(" AJOUT " + premiereEntre.getText());
-		 if(choixLoi.getValue().toString().equals("Discrete")) {
-			 //TODO vérif 2ème entrée
-			 listValeurs.add(Double.parseDouble(premiereEntre.getText()));
-			 listProbabilite.add(Double.parseDouble(deuxiemeEntre.getText()));
+		 double value1 = Double.parseDouble(premiereEntre.getText());	 
+		 if (choixLoi.getValue().toString().equals("Discrete")) {
+			 // vérif 2ème entrée ne dépasse pas 1
+			 double value2 = Double.parseDouble(deuxiemeEntre.getText());
+			 if (OutilsInterface.inferieurAUn(listProbabilite, value2)) {
+				 listValeurs.add(value1);
+				 listProbabilite.add(value2);
+				 System.out.println(" AJOUT " + value1);
+				 premiereEntre.clear();
+				 deuxiemeEntre.clear();
+			 } else {
+				 System.out.println("probabilités supérieures à 1 -> erreur");
+				 //TODO afficher message erreur car ensemble val > 1
+			 }
 		 } else {
 			 listValeurs.add(Double.parseDouble(premiereEntre.getText()));
 		 }
