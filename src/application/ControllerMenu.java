@@ -6,7 +6,7 @@ import java.util.Optional;
 import application.outils.Binomiale;
 import application.outils.Discrete;
 import application.outils.Exponentielle;
-//import application.outils.Graphique;
+import application.outils.Graphique;
 import application.outils.Normale;
 import application.outils.OutilsInterface;
 import application.outils.TraitementFichier;
