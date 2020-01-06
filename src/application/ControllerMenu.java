@@ -166,29 +166,47 @@ public class ControllerMenu {
 		 //TODO ajouter verif, assez de valeurs, nbDerepetition entre ok etc valeurs ok pas de lettres etc
 		 loi = choixLoi.getValue().toString();
 		 // si le nombre de répétition n'est pas valide on affiche le message d'erreur du default
-		 //try {
+		 try {
 			 repetition = Double.parseDouble(nbRepetition.getText());
-		 //} catch(NumberFormatException e) {
-			 // TODO c'est pas un nombre donc sois afficher un message d'erreur soit jsp
-		// }
-		 // si le champ ne peut pas être un nombre 
-		 //if (!OutilsInterface.canBeNumber(premiereEntre.getText())) {
+		 } catch(NumberFormatException e) {
+			 loi = "invalide";
+		}
+		// si le champ ne peut pas être un nombre 
+		 if (!OutilsInterface.canBeNumber(premiereEntre.getText())) {
 			 // on affiche le default du switch 
-			// loi = "invalide";
-		// }
+			 loi = "invalide";
+		}
+		
 		 switch(loi) {
 			 case "Exponentielle":
-				 resultat.add(OutilsInterface.simulerExponentielle(Double.parseDouble(premiereEntre.getText()),repetition));
+				 Double val = Double.parseDouble(premiereEntre.getText());
+				 // vérif si supérieur à 0
+				 if (OutilsInterface.verifValeurPos(val)) {
+					 resultat.add(OutilsInterface.simulerExponentielle(val,repetition));
+				 } else {
+					 ErreurSaisie();
+				 }
 				 break;
 				 
 			 case "Normale": 
-				 resultat.add(OutilsInterface.simulerNormale(Double.parseDouble(premiereEntre.getText()),
-						 Double.parseDouble(deuxiemeEntre.getText()),repetition));
+				 Double val1 = Double.parseDouble(premiereEntre.getText());
+				 Double val2 = Double.parseDouble(deuxiemeEntre.getText());
+				 // les deux valeurs doivent être supérieur à 0 
+				 if (OutilsInterface.verifValeurPos(val1) && OutilsInterface.verifValeurPos(val2))  {
+					 resultat.add(OutilsInterface.simulerNormale(val1,val2,repetition));
+				 } else {
+					 ErreurSaisie();
+				 }
 				 break;
 				 
 			 case "Binomiale":
-				 resultat.add(OutilsInterface.simulerBinomiale(Double.parseDouble(premiereEntre.getText()),
-						 Double.parseDouble(deuxiemeEntre.getText()),repetition));
+				 Double valeur1 = Double.parseDouble(premiereEntre.getText()); // nb de repétition
+				 Double valeur2 = Double.parseDouble(deuxiemeEntre.getText()); // probabilité (>=0 <=1)
+				 if (OutilsInterface.verifValeurPos(valeur1) && OutilsInterface.verifValeurIntervalle(0.0,1.0,valeur2)) {
+					 resultat.add(OutilsInterface.simulerBinomiale(valeur1, valeur2,repetition));
+				 } else {
+					 ErreurSaisie();
+				 }	
 				 break;
 				 
 			 case "Discrete":
@@ -197,6 +215,10 @@ public class ControllerMenu {
 				 
 			 case "Uniforme":
 				 resultat2D.add(OutilsInterface.simulerUniforme(listValeurs,repetition));
+				 break;
+				 
+			 case "invalide":
+				 ErreurSaisie();
 				 break;
 				 
 			 default: 
@@ -249,19 +271,29 @@ public class ControllerMenu {
 					 break;
 			 }
 			 Platform.exit();
+		 } else {
+			 choixLoi.setVisible(true);
+			 lbLoi.setVisible(true);
 		 }
 	 }
 	 
-	
+	public void ErreurSaisie() {
+		Alert invalide = new Alert(AlertType.INFORMATION);
+		 invalide.setTitle("ERREUR: Valeur incorrecte");
+		 invalide.setHeaderText("Choix valeur incorrect");
+		 invalide.setContentText("Vérifier que les paramètres soient correctes pour cette loi,"
+		 		+ "\nles probabiltés sont sous forme (0.x...)");
+		 invalide.show();
+	}
 
 	@FXML
 	 void ajouterVal(ActionEvent event) {
 		 choixLoi.setVisible(false);
 		 lbLoi.setVisible(false);
-		 //TODO afficher btn retour accueil
+		 // TODO vérif premiere entree
 		 System.out.println(" AJOUT " + premiereEntre.getText());
 		 if(choixLoi.getValue().toString().equals("Discrete")) {
-			 //TODO ajouter verif
+			 //TODO vérif 2ème entrée
 			 listValeurs.add(Double.parseDouble(premiereEntre.getText()));
 			 listProbabilite.add(Double.parseDouble(deuxiemeEntre.getText()));
 		 } else {
