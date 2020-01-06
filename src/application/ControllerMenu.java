@@ -166,15 +166,15 @@ public class ControllerMenu {
 	 */
 	@FXML
 	void simulerLoi(ActionEvent event) {
-		//TODO ajouter verif, assez de valeurs, nbDerepetition entre ok etc valeurs ok pas de lettres etc
+		
 		loi = choixLoi.getValue().toString();
-		// si le nombre de répétition n'est pas valide on affiche le message d'erreur du default
+		// si le nombre de rÃ©pÃ©tition n'est pas valide on affiche le message d'erreur du default
 		try {
 			repetition = Double.parseDouble(nbRepetition.getText());
 		} catch(NumberFormatException e) {
 			loi = "invalide";
 		}
-		// si le champ ne peut pas être un nombre 
+		// si le champ ne peut pas Ãªtre un nombre 
 		if (!OutilsInterface.canBeNumber(premiereEntre.getText()) && loi != "Discrete") {
 			// on affiche le default du switch 
 			loi = "invalide";
@@ -183,7 +183,7 @@ public class ControllerMenu {
 		switch(loi) {
 		case "Exponentielle":
 			Double val = Double.parseDouble(premiereEntre.getText());
-			// vérif si supérieur à 0
+			// vÃ©rif si supÃ©rieur Ã  0
 			if (OutilsInterface.verifValeurPos(val)) {
 				resultat.add(OutilsInterface.simulerExponentielle(val,repetition));
 			} else {
@@ -194,7 +194,7 @@ public class ControllerMenu {
 		case "Normale": 
 			Double val1 = Double.parseDouble(premiereEntre.getText());
 			Double val2 = Double.parseDouble(deuxiemeEntre.getText());
-			// les deux valeurs doivent être supérieur à 0 
+			// les deux valeurs doivent Ãªtre supÃ©rieur Ã  0 
 			if (OutilsInterface.verifValeurPos(val1) && OutilsInterface.verifValeurPos(val2))  {
 				resultat.add(OutilsInterface.simulerNormale(val1,val2,repetition));
 			} else {
@@ -203,8 +203,8 @@ public class ControllerMenu {
 			break;
 
 		case "Binomiale":
-			Double valeur1 = Double.parseDouble(premiereEntre.getText()); // nb de repétition
-			Double valeur2 = Double.parseDouble(deuxiemeEntre.getText()); // probabilité (>=0 <=1)
+			Double valeur1 = Double.parseDouble(premiereEntre.getText()); // nb de repÃ©tition
+			Double valeur2 = Double.parseDouble(deuxiemeEntre.getText()); // probabilitÃ© (>=0 <=1)
 			if (OutilsInterface.verifValeurPos(valeur1) && OutilsInterface.verifValeurIntervalle(0.0,1.0,valeur2)) {
 				resultat.add(OutilsInterface.simulerBinomiale(valeur1, valeur2,repetition));
 			} else {
@@ -281,9 +281,9 @@ public class ControllerMenu {
 				TraitementFichier.saveTab2D(resultat2D, "Uniforme");
 				break;
 			}
-			// TODO remettre ça
-			//Main.setScene(Graphique.graphe());
-			Platform.exit();
+			
+			Main.setScene(Graphique.graphe());
+			//Platform.exit();
 		} else {
 			choixLoi.setVisible(true);
 			lbLoi.setVisible(true);
@@ -291,15 +291,15 @@ public class ControllerMenu {
 	}
 
 	/**
-	 * affiche une fenêtre avec un message d'erreur pour
+	 * affiche une fenÃªtre avec un message d'erreur pour
 	 *  informer l'utilisateur de son erreur de saisie
 	 */
 	public void ErreurSaisie() {
 		Alert invalide = new Alert(AlertType.INFORMATION);
 		invalide.setTitle("ERREUR: Valeur incorrecte");
 		invalide.setHeaderText("Choix valeur incorrect");
-		invalide.setContentText("Vérifier que les paramètres soient correctes pour cette loi,"
-				+ "\nles probabiltés sont sous forme (0.x...)");
+		invalide.setContentText("VÃ©rifier que les paramÃ¨tres soient correctes pour cette loi,"
+				+ "\nles probabiltÃ©s sont sous forme (0.x...)");
 		invalide.show();
 	}
 
@@ -316,7 +316,7 @@ public class ControllerMenu {
 				if (OutilsInterface.canBeNumber(deuxiemeEntre.getText())) {
 					value2 = Double.parseDouble(deuxiemeEntre.getText());
 					
-					//vérif que l'ensemble des probas ne dépassent pas 1
+					//vÃ©rif que l'ensemble des probas ne dÃ©passent pas 1
 					if (OutilsInterface.inferieurAUn(listProbabilite, value2)) {
 						listValeurs.add(value1);
 						listProbabilite.add(value2);
@@ -324,7 +324,7 @@ public class ControllerMenu {
 						premiereEntre.clear();
 						deuxiemeEntre.clear();
 					} else {
-						System.out.println("probabilités supérieures à 1 -> erreur");
+						System.out.println("probabilitÃ©s supÃ©rieures Ã  1 -> erreur");
 						//TODO afficher message erreur car ensemble val > 1
 					}
 				} else {
