@@ -2,7 +2,7 @@
  * LGN.java
  */
 
-package c_est_la_merde;
+package application.outils;
 
 import java.util.ArrayList;
 import java.util.Scanner;
