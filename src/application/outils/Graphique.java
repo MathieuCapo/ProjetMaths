@@ -97,7 +97,7 @@ public class Graphique {
 					series.getData().add(new XYChart.Data(valeurs.get(i), resultats.get(i)));
 				}
 				lineChart.setCreateSymbols(true);
-			}else if(nomFich.matches(reggexExponentielle)) {
+			}/*else if(nomFich.matches(reggexExponentielle)) {
 				while((ligne = lect.readLine()) != null) {
 					resultats.add(Double.parseDouble(ligne.substring(0,ligne.length()-1)));
 					compteur++;
@@ -106,7 +106,7 @@ public class Graphique {
 				for(int i = 0; i < resultats.size(); i++) {
 					series.getData().add(new XYChart.Data(i, resultats.get(compteurFin)));
 					compteurFin--;
-				}
+				}*/
 			} else {
 				while((ligne = lect.readLine()) != null) {
 					resultats.add(Double.parseDouble(ligne.substring(0,ligne.length()-1)));
