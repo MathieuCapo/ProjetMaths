@@ -27,15 +27,11 @@ public class Graphique {
 	 * Affiche une boite de dialogue qui demande a l'utilisateur d'entrer un nom de fichier
 	 */
 	private static void showInputTextDialog() {
-
 		TextInputDialog dialog = new TextInputDialog("resultat.csv");
-
 		dialog.setTitle("NOM FICHIER");
 		dialog.setHeaderText("Entrer le nom du fichier :");
 		dialog.setContentText("Nom:");
-
 		Optional<String> result = dialog.showAndWait();
-
 		result.ifPresent(name -> {
 			nomFich = name;
 		});
@@ -97,7 +93,7 @@ public class Graphique {
 					series.getData().add(new XYChart.Data(valeurs.get(i), resultats.get(i)));
 				}
 				lineChart.setCreateSymbols(true);
-			}/*else if(nomFich.matches(reggexExponentielle)) {
+			/*}else if(nomFich.matches(reggexExponentielle)) {
 				while((ligne = lect.readLine()) != null) {
 					resultats.add(Double.parseDouble(ligne.substring(0,ligne.length()-1)));
 					compteur++;
@@ -107,16 +103,17 @@ public class Graphique {
 					series.getData().add(new XYChart.Data(i, resultats.get(compteurFin)));
 					compteurFin--;
 				}*/
-			} else {
-				while((ligne = lect.readLine()) != null) {
+			} else { //pour toutes les autres lois recupere uniquement une colonne
+				while((ligne = lect.readLine()) != null) { // lit le fichier et ajoute les resultats
 					resultats.add(Double.parseDouble(ligne.substring(0,ligne.length()-1)));
 					compteur++;
 				}
+				/* Ajoute au graph les points */
 				for(int i = 0; i < resultats.size(); i++) {
 					series.getData().add(new XYChart.Data(i, resultats.get(i)));
 				}
 			}
-			lineChart.getData().add(series);
+			lineChart.getData().add(series); // ajoute les points au graphe
 			return scene;
 		} catch(IOException e) {
 			System.err.println("Erreur");
