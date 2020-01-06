@@ -65,7 +65,7 @@ public class OutilsInterface {
 	 */
 	public static Double[] simulerBinomiale(Double nbRep, Double proba, Double repetition) {
 		Binomiale loi = new Binomiale(proba, nbRep, repetition);
-		return loi.simuler(repetition);
+		return loi.simuler();
 	}
 
 	/**
@@ -102,7 +102,14 @@ public class OutilsInterface {
 	 * entre les valeurs passées en argument (comprises)
 	 * @return un boolean = true si valeur correct false sinon
 	 */
-	public static boolean verifValeur(Double debut, Double fin, Double valeur) {
+	public static boolean verifValeurIntervalle(Double debut, Double fin, Double valeur) {
 		return valeur >= debut && valeur <= fin;
+	}
+	/**
+	 * permet de vérifier que la valeur est strictement supérieur à la limite
+	 * @return un boolean = true si valeur correct false sinon
+	 */
+	public static boolean verifValeurSup(Double limite, Double valeur) {
+		return valeur > limite;
 	}
 }
