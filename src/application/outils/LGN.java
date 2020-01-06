@@ -25,7 +25,7 @@ public class LGN {
 	/** liste des résultats obtenus lors de l'expérience de Bernouilli */
 	private Double[][] resultatsBernouilli;
 
-	/** Moyenne de succés obtenue */
+	/** Moyenne de succés obtenus */
 	private Double moyenne = 0.0;
 
 	/** scanner des entrees utilisateur */
@@ -92,11 +92,5 @@ public class LGN {
 		}
 		
 		return resultatsBernouilli;
-	}
-	
-	/** test */
-	public static void main (String[] args) {
-		LGN test = new LGN();
-		test.simuler(1000);
 	}
 }
