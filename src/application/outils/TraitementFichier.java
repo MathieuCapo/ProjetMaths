@@ -35,6 +35,7 @@ public class TraitementFichier {
 	 * @param tableau tableau contenant les resultats a inscrire
 	 */
 	public static void enregistrerFichier(String nomFichier,Double[] tableau){
+		System.out.println("Enregistrement");
 		try (FileWriter fichierSortie = new FileWriter(nomFichier)){
 			Arrays.sort(tableau); // tri le tableau necessaire pour le graphique
 			for(int i = 0; i < tableau.length; i++) { // ecrit toutes les donnees
@@ -43,6 +44,7 @@ public class TraitementFichier {
 		} catch (IOException e) {
 			System.err.println(e);
 		}
+		System.out.println("Données enregistrées");
 	}
 
 	/**
@@ -71,5 +73,6 @@ public class TraitementFichier {
 		} catch (IOException e) {
 			System.err.println(e);
 		}
+		System.out.println("Données enregistrées");
 	}
 }

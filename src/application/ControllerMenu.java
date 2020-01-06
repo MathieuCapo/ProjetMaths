@@ -307,22 +307,34 @@ public class ControllerMenu {
 	void ajouterVal(ActionEvent event) {
 		choixLoi.setVisible(false);
 		lbLoi.setVisible(false);
-		double value1 = Double.parseDouble(premiereEntre.getText());	 
-		if (choixLoi.getValue().toString().equals("Discrete")) {
-			//vérif que l'ensemble des probas ne dépassent pas 1
-			double value2 = Double.parseDouble(deuxiemeEntre.getText());
-			if (OutilsInterface.inferieurAUn(listProbabilite, value2)) {
-				listValeurs.add(value1);
-				listProbabilite.add(value2);
-				System.out.println(" AJOUT " + value1);
-				premiereEntre.clear();
-				deuxiemeEntre.clear();
+		double value1 = 0;
+		double value2 = 0;
+		if (OutilsInterface.canBeNumber(premiereEntre.getText())) {
+			value1 = Double.parseDouble(premiereEntre.getText());	 
+			if (choixLoi.getValue().toString().equals("Discrete")) {
+				
+				if (OutilsInterface.canBeNumber(deuxiemeEntre.getText())) {
+					value2 = Double.parseDouble(deuxiemeEntre.getText());
+					
+					//vérif que l'ensemble des probas ne dépassent pas 1
+					if (OutilsInterface.inferieurAUn(listProbabilite, value2)) {
+						listValeurs.add(value1);
+						listProbabilite.add(value2);
+						System.out.println(" AJOUT " + value1);
+						premiereEntre.clear();
+						deuxiemeEntre.clear();
+					} else {
+						System.out.println("probabilités supérieures à 1 -> erreur");
+						//TODO afficher message erreur car ensemble val > 1
+					}
+				} else {
+					ErreurSaisie();
+				}
 			} else {
-				System.out.println("probabilités supérieures à 1 -> erreur");
-				//TODO afficher message erreur car ensemble val > 1
+				listValeurs.add(Double.parseDouble(premiereEntre.getText()));
 			}
 		} else {
-			listValeurs.add(Double.parseDouble(premiereEntre.getText()));
+			ErreurSaisie();
 		}
 	}
 }
