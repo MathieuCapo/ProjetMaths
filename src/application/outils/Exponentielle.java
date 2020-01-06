@@ -82,6 +82,7 @@ public class Exponentielle {
 	 */
 	public Double[] simuler(Double repetition) {
 		nbTirages = (int)Math.round(repetition);
+		resultats = new Double[nbTirages];
 		for (int i = 0; i < nbTirages; i++) {
 			this.resultats[i] = this.calculProba(lambda);
 		}

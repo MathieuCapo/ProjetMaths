@@ -38,7 +38,7 @@ public class OutilsInterface {
 	 * @param repetition nombre de repetitions
 	 * @return les resultats des tirages de la simulation de la loi
 	 */
-	public static Double[] simulerNormale(double esperance, double variance, Double repetition) {
+	public static Double[] simulerNormale(Double esperance, Double variance, Double repetition) {
 		Normale loi = new Normale(esperance, variance);
 		return loi.simuler(repetition);
 	}
@@ -50,7 +50,7 @@ public class OutilsInterface {
 	 * @param repetition nombre de repetitions
 	 * @return les resultats des tirages de la simulation de la loi
 	 */
-	public static Double[] simulerExponentielle(double lambda, Double repetition) {
+	public static Double[] simulerExponentielle(Double lambda, Double repetition) {
 		Exponentielle loi = new Exponentielle(lambda);
 		return loi.simuler(repetition);
 	}
@@ -63,7 +63,7 @@ public class OutilsInterface {
 	 * @param repetition nombre de simulation de la loi a realiser
 	 * @return les resultats des tirages de la simulation de la loi
 	 */
-	public static Double[] simulerBinomiale(double nbRep, double proba, Double repetition) {
+	public static Double[] simulerBinomiale(Double nbRep, Double proba, Double repetition) {
 		Binomiale loi = new Binomiale(proba, nbRep, repetition);
 		return loi.simuler(repetition);
 	}
