@@ -9,27 +9,28 @@ import java.util.Scanner;
 
 /**
  * Principe : 
- * Il faut une V.A. qui reprï¿½sente une ï¿½preuve n'ayant que 2 issue, vrai faux ( bernoulli ), 
- * la proba de gagner est dï¿½finie par l'utilisateur, on calcule la moyenne
- * du nombre de fois ou l'utilisateur ï¿½ gagnï¿½ et on compare ï¿½ l'espï¿½rance
+ * Il faut une V.A. qui représente une épreuve n'ayant que 2 issue, vrai faux ( bernoulli ), 
+ * la proba de gagner est définie par l'utilisateur, on calcule la moyenne
+ * du nombre de fois ou l'utilisateur é gagné et on compare é l'espérance
  */
 public class Binomiale {
 
-	/**	 Nombre d'expï¿½rience ï¿½ rï¿½aliser */
+	/**	 Nombre d'expérience é réaliser */
 	private double nb;
 
-	/** probabilitï¿½ de succï¿½s de l'expï¿½rience */
+	/** probabilité de succés de l'expérience */
 	private double p ;
 
-	/** liste des rï¿½sultats obtenue lors de l'expï¿½rience de Bernouilli */
+	/** liste des résultats obtenue lors de l'expérience de Bernouilli */
 	private ArrayList<Integer> conteneurChemin;
-
+	
+	/** le nombre de fois que l'utilisateur veut réaliser la loi Binomiale */
 	private double nbExperience;
 	
-	/** ensemble des moyennes, ï¿½ renvoyer pour avoir l'ensemble des rï¿½sultats des tests */
+	/** ensemble des moyennes, é renvoyer pour avoir l'ensemble des résultats des tests */
 	private Double[] contientNbApparition;
 
-	/** Moyenne de succï¿½s obtenue */
+	/** Moyenne de succés obtenue */
 	private Double moyenne;
 
 	private Double nbApparition;
@@ -40,10 +41,13 @@ public class Binomiale {
 
 	/** 
 	 * constructeur de la Loi
+	 * @param proba de succès de la loi de Bernouilli
+	 * @param NbLance nombre d'expérience de Bernouilli à réaliser par loi binomiale
+	 * @param nbExperience nombre de fois que l'utilisateur veut réaliser la loi Binomiale
 	 */
 	public Binomiale(double proba, double NbLance,Double nbExperience) {
 		//entreeNbLance(); // initialise le nombre de lancer (nb)
-		//entreeValProb();  // initialise la valeur de succï¿½s (p)
+		//entreeValProb();  // initialise la valeur de succés (p)
 		this.p = proba;
 		this.nb = NbLance;
 		this.nbExperience = nbExperience;
@@ -54,8 +58,8 @@ public class Binomiale {
 	}	
 
 	/**
-	 * Realisation de  l'experience de Bernoulli avec la proba de succï¿½s donnï¿½ par l'utilisateur
-	 * @param probasucces probabilitï¿½ de succï¿½s de tomber sur 1 ( vrai ) lors de l'expï¿½rience
+	 * Realisation de  l'experience de Bernoulli avec la proba de succés donné par l'utilisateur
+	 * @param probasucces probabilité de succés de tomber sur 1 ( vrai ) lors de l'expérience
 	 * @return un int = true ou false
 	 * 1 = vrai
 	 * 0 = faux
@@ -66,10 +70,10 @@ public class Binomiale {
 	}
 
 	/**
-	 * Calcul le nombre de fois que le succï¿½s est prï¿½sent dans conteneurChemin et le divise
-	 * par de nombre total de rï¿½sultat afin de trouver une moyenne
+	 * Calcul le nombre de fois que le succés est présent dans conteneurChemin et le divise
+	 * par de nombre total de résultat afin de trouver une moyenne
 	 * @param conteneurChemin la liste de valeurs obtenues
-	 * @return la moyenne du succï¿½s
+	 * @return la moyenne du succés
 	 */
 	public Double moyenneApparition() {
 		for(int i = 0; i < conteneurChemin.size(); i++) {
@@ -92,16 +96,14 @@ public class Binomiale {
 	 * @param args
 	 * @return 
 	 */
-	public Double[] simuler(Double nbExperience) {
-		/* Lancer le constructeur quand on ouvre la page interface */
-		/* ACTION LORSQU'ON CLIQUE SUR SIMULER */
+	public Double[] simuler() {
 		for ( int y = 0; y < nbExperience; y++) {
 			for(int i = 0; i < nb; i++) {
 				conteneurChemin.add(Bernouilli());
 			}
 			moyenne = moyenneApparition();
 			System.out.println("moyenne d'apparition de la valeur correct lors de la simulation : " + moyenne
-					+ "\nproba de succï¿½s : " + p);
+					+ "\nproba de succés : " + p);
 			contientNbApparition[y] = nbApparition;
 			System.out.println("nombre d'apparition : " + nbApparition + '\n' + '\n');
 			nbApparition = 0.0;
